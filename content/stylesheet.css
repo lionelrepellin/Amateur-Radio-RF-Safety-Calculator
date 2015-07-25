@@ -1,0 +1,90 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	line-height: 50px;
+	color: #FFF;
+	text-transform: uppercase;
+	font-weight: bold;
+	background-color: #11a7ab;
+	text-align: center;
+}
+
+.nav {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	background-color: #4f597b;
+	overflow: hidden;
+}
+
+a {
+	display: block;
+	width: 33%;
+	height: 60px;
+	line-height: 60px;
+	float: left;
+}
+
+.active {
+	border-top: 3px solid #11a7ab;
+}
+
+.view {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	bottom: 50px;
+	left: 0;
+}
+
+.panel {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow-x : hidden;
+	overflow-y : scroll;
+	-webkit-overflow-scrolling:touch;
+}
+
+.panel-padding {
+	padding: 0 25px;
+}
+/*
+.left {
+	-ms-transform: translate3d(-100%,0,0);
+	-webkit-transform: translate3d(-100%,0,0);
+	transform: translate3d(-100%,0,0);
+}
+
+.center {
+	-ms-transform: translate3d(0,0,0);
+	-webkit-transfor: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+.right {
+	-ms-transform: translate3d(100%,0,0);
+	-webkit-transfor: translate3d(100%,0,0);
+	transform: translate3d(100%,0,0);
+}
+*/
+
+input.ng-dirty.ng-invalid{
+	border-color:red;
+}
+
+.error-message {
+	color: red;
+}

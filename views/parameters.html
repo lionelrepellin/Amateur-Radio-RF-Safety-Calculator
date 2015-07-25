@@ -1,0 +1,16 @@
+<div class="panel panel-padding">
+	<p>PARAMETRES</p>
+
+	<table width="90%">
+		<tr>
+			<td width="20%"></td>
+			<td width="40%">Lang</td>
+			<td width="40%">Country</td>
+		</tr>
+		<tr ng-repeat="language in languages" >
+			<td><input type="radio" name="radioLanguages" ng-click="selectLanguage('{{language.lang}}')" ng-checked="language.lang == selectedLanguage" /></td>
+			<td>{{language.lang}}</td>
+			<td>{{language.country}}</td>
+		</tr>
+	</table>
+</div>
