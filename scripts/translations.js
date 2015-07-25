@@ -69,3 +69,5 @@ var french = {
 		DISTANCE: 'Distance à l\'antenne entre 0.1 et 500m'
 	}
 };
+
+// to be continued...

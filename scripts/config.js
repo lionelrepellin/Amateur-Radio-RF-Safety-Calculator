@@ -18,6 +18,7 @@ app.config(function ($routeProvider, $locationProvider, $translateProvider) {
 		// 	redirectTo: '/'
 		// });
 
+	// add translations here
 	$translateProvider.translations('en', english);
 	$translateProvider.translations('fr', french);
 
@@ -28,10 +29,9 @@ app.config(function ($routeProvider, $locationProvider, $translateProvider) {
 	//$locationProvider.html5Mode(true);
 });
 
-app.run(function($translate, languageService) {
+app.run(function(languageService) {
 
-	// set default language if not exists
+	// set default language to 'english' if not exists
 	var language = languageService.get() || 'en';
-	$translate.use(language);
 	languageService.set(language);
 });

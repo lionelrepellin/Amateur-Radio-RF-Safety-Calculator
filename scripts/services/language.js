@@ -1,8 +1,9 @@
 'use strict'
 
 app.service('languageService',
-    function() {
+    function($translate) {
         this.set = function(lang) {
+        	$translate.use(lang);
             localStorage.setItem('lang', lang);
         };
 
