@@ -1,8 +1,9 @@
 'use strict';
 
-app.controller('MainCtrl', ['$scope', '$rootScope', 'calculatorService',
-	function($scope, $rootScope, calculatorService) {
+app.controller('MainCtrl', ['$scope', '$rootScope', 'calculatorService', 'languageService',
+	function($scope, $rootScope, calculatorService, languageService) {
 
+		$scope.result = null;
 		$scope.showResult = false;
 
 		$rootScope.menu = 'home';
@@ -11,12 +12,8 @@ app.controller('MainCtrl', ['$scope', '$rootScope', 'calculatorService',
 
 		$scope.calculate = function() {
 			if($scope.mainForm.$valid) {
-
-				//console.log($scope.mainForm.frequency);
-
-				var selectedLang = localStorage.getItem('lang')
-				var result = calculatorService.calcul($scope.data, selectedLang);
-				console.log(result);
+				var selectedLanguage = languageService.get();
+				$scope.result = calculatorService.calcul($scope.data, selectedLanguage);
 				$scope.showResult = true;
 			}
 		};

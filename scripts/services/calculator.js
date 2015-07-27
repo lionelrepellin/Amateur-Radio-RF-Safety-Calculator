@@ -19,13 +19,11 @@ app.service('calculatorService',
             else if(frequency >= 2000 && frequency < 300000) {
                 return 61;
             }
-            else {
-                return 28;
-            }
+            return 28;
         };
 
-
-        this.calcul = function(data, lang) {
+        this.calcul = function(dataForm, lang) {
+            var data = angular.copy(dataForm);
             var waveLength = 300 / data.frequency;
             var dBi = data.antenna + 2.15;
             var par = data.power * Math.pow(10, (data.antenna - data.losses) / 10);
@@ -35,17 +33,26 @@ app.service('calculatorService',
             var champElectrique = 1 / data.distance * Math.sqrt(30 * pire);
 
             // convert meters to feet
-            if(lang === 'en') {
-                // ft = m * 3.2808
-                waveLength *= 3.2808;
-                distance *= 3.2808;
-            }
+            // if(lang === 'en') {
+            //     // ft = m * 3.2808
+            //     waveLength *= 3.2808;
+            //     distance *= 3.2808;
+            // }
 
             return {
-                longueurDonde: waveLength,
-                totalAntGain: dBi,
+                /* data from form */
+                /*
+                frequency: data.frequency,
+                powerTransceiver: data.power,
+                antennaGain: data.antenna,
+                losses: data.losses,
+                distanceFromAntenna: data.distance,
+                */
+                /* result */
+                waveLength: waveLength,
+                totalAntennaGain: dBi,
                 PAR: par,
-                distanceMini: distance,
+                minimalSafetyDistance: distance,
                 PIRE: pire,
                 champElectriqueCalculé: champElectrique,
                 champEmaxDexposition: E

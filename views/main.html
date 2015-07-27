@@ -21,9 +21,9 @@
 			</div>
 
 			<!-- <div ng-show="mainForm.power.$dirty && mainForm.power.$invalid" > -->
-<!-- 				<span ng-show="mainForm.power.$error.integer" class="error-message" >The value is not a valid integer!</span>
+	<!-- 				<span ng-show="mainForm.power.$error.integer" class="error-message" >The value is not a valid integer!</span>
 	    		<span ng-show="mainForm.power.$error.min || form.size.$error.max" class="error-message" >The value must be in range 0 to 10!</span> -->
-    		<!-- </div> -->
+			<!-- </div> -->
 
 			<p ng-show="mainForm.power.$dirty && mainForm.power.$invalid" class="error-message" >{{'ERRORS.POWER' | translate}}</p>
 		</div>
@@ -58,24 +58,11 @@
 		<button type="submit" class="btn btn-primary btn-lg btn-block" ng-disabled="mainForm.$invalid">{{'CALCULATE' | translate}}</button>
 	</form>
 
+	<!-- The result here -->
 	<div ng-show="showResult" class="container-fluid">
-		<div class="row">
-			<div class="col-xs-6">PAR</div>
-			<div class="col-xs-3">100</div>
-			<div class="col-xs-3">Watt</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6">PIRE</div>
-			<div class="col-xs-3">200</div>
-			<div class="col-xs-3">Watt</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6">Distance minimum de sécurité</div>
-			<div class="col-xs-3">10</div>
-			<div class="col-xs-3">m</div>
-		</div>
-	</div>
+		<div ng-include src="'views/result.html'"></div>
 
-	<button class="btn" ng-click="reset()">RESET</button>
+		<button class="btn" ng-click="reset()">RESET</button>
+	</div>
 
 </div>

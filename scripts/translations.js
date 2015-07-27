@@ -19,7 +19,7 @@ var english = {
 		PLACEHOLDER: 'Antenne gain in dBd'
 	},
 	DISTANCE: {
-		LABEL: 'Distance to antenna',
+		LABEL: 'Distance from antenna',
 		PLACEHOLDER: 'Distance between the antenna and you'
 	},
 	UNIT_MEASURE_FOR_DISTANCE: 'ft',

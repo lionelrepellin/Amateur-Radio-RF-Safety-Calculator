@@ -4,12 +4,14 @@
 	<table width="90%">
 		<tr>
 			<td width="20%"></td>
-			<td width="40%">Lang</td>
-			<td width="40%">Country</td>
+			<td width="20%">Lang</td>
+			<td width="30%">Language</td>
+			<td width="30%">Country</td>
 		</tr>
 		<tr ng-repeat="language in languages" >
 			<td><input type="radio" name="radioLanguages" ng-click="selectLanguage('{{language.lang}}')" ng-checked="language.lang == selectedLanguage" ng-disabled="{{!language.active}}" /></td>
 			<td>{{language.lang}}</td>
+			<td>{{language.language}}</td>
 			<td>{{language.country}}</td>
 		</tr>
 	</table>
