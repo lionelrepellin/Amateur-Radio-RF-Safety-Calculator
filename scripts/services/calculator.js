@@ -23,6 +23,8 @@ app.service('calculatorService',
         };
 
         this.calcul = function(dataForm, lang) {
+            console.log('calcul in progress...');
+
             var data = angular.copy(dataForm);
             var waveLength = 300 / data.frequency;
             var dBi = data.antenna + 2.15;
@@ -58,4 +60,71 @@ app.service('calculatorService',
                 champEmaxDexposition: E
             };
         };
+
+        this.getModulationModes = function() {
+            return [{
+                mode: 'SSB',
+                factor: 0.2
+            },
+            {
+                mode: 'SSB with compressor',
+                factor: 0.5
+            },
+            {
+                mode: 'AM (50% modulation)',
+                factor: 0.5
+            },
+            {
+                mode: 'AM (100% modulation)',
+                factor: 0.3
+            },
+            {
+                mode: 'CW',
+                factor: 0.4
+            },
+            {
+                mode: 'ATV',
+                factor: 0.6
+            },
+            {
+                mode: 'FM',
+                factor: 1
+            },
+            {
+                mode: 'Digital (FSK, RTTY, SSTV)',
+                factor: 1
+            },
+            {
+                mode: 'Tune',
+                factor: 1
+            },
+            {
+                mode: 'JT65',
+                factor: 0.77
+            }];
+        };
+
+        this.getTransmissionModes = function() {
+            return [{
+                mode: 'Broadcast',
+                ratio: 1
+            },
+            {
+                mode: 'Casual / Mobile',
+                ratio: 0.3
+            },
+            {
+                mode: 'Contest',
+                ratio: 0.5
+            },
+            {
+                mode: 'Packet',
+                ratio: 0.5
+            },
+            {
+                mode: 'Repeaters / Beacon',
+                ratio: 1
+            }];
+        };
+
 });

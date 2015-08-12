@@ -61,7 +61,7 @@ a {
 .panel-padding {
 	padding: 0 25px;
 }
-/*
+
 .left {
 	-ms-transform: translate3d(-100%,0,0);
 	-webkit-transform: translate3d(-100%,0,0);
@@ -79,7 +79,6 @@ a {
 	-webkit-transfor: translate3d(100%,0,0);
 	transform: translate3d(100%,0,0);
 }
-*/
 
 input.ng-dirty.ng-invalid{
 	border-color:red;
@@ -87,4 +86,11 @@ input.ng-dirty.ng-invalid{
 
 .error-message {
 	color: red;
+}
+
+.result{
+	background-color: #F1F1F1;
+	/*top: 0;*/
+	/*right: 0;*/
+	/*position: absolute;*/
 }
