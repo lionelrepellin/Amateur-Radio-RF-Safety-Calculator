@@ -89,7 +89,6 @@ input.ng-dirty.ng-invalid{
 }
 
 .result{
-	background-color: #F1F1F1;
 	/*top: 0;*/
 	/*right: 0;*/
 	/*position: absolute;*/
@@ -101,4 +100,12 @@ input.ng-dirty.ng-invalid{
 
 .result-ko {
 	background-color: red;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.error-message {
+	background-color: #FF7F7F;
 }

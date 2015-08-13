@@ -2,7 +2,7 @@
 
 var english = {
 	TITLE: 'Security Distance Controller',
-	FREQ: {
+	FREQUENCY: {
 		LABEL: 'Frequency',
 		PLACEHOLDER: 'Frequency in MHz'
 	},
@@ -37,7 +37,7 @@ var english = {
 
 var french = {
 	TITLE: 'Contrôle de Distance de Sécurité',
-	FREQ: {
+	FREQUENCY: {
 		LABEL: 'Fréquence',
 		PLACEHOLDER: 'Fréquence en MHz'
 	},

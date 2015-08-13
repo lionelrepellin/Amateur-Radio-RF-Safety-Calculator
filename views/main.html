@@ -1,76 +1,60 @@
 <div class="panel panel-padding">
 
-	<div ng-class="showResult ? 'left' : 'center'">
-		<form name="mainForm" class="form-horizontal" ng-submit="calculate()" novalidate>
+	<form name="mainForm" class="form-horizontal" ng-submit="calculate()" novalidate>
+	<div class="list" ng-show="!showResult">
 
-			<div class="form-group">
-				<label class="control-label" for="inputFrequency">{{'FREQ.LABEL' | translate}}</label>
-				<div class="input-group">
-					<input type="number" class="form-control" name="frequency" id="inputFrequency" placeholder="{{'FREQ.PLACEHOLDER' | translate}}" ng-model="data.frequency" min="0.003" max="300000" step="any"  required />
-					<div class="input-group-addon">Mhz</div>
-				</div>
-				<!-- <div ng-messages="mainForm.frequency.$error" ng-messages-include="errors.html" ng-if="mainForm.$submitted"></div> -->
-				<p ng-show="mainForm.frequency.$dirty && mainForm.frequency.$invalid" class="error-message" >{{'ERRORS.FREQUENCY' | translate}}</p>
-				<!-- <span class="error-message" ng-show="myform.firstname.$dirty && myform.firstname.$error.required">The First Name is Mandatory</span> -->
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">{{'FREQUENCY.LABEL' | translate}}</span>
+			<input type="number" name="frequency" id="inputFrequency" placeholder="{{'FREQUENCY.PLACEHOLDER' | translate}}" ng-model="data.frequency" min="0.003" max="300000" step="any" required />
+			<p ng-show="mainForm.frequency.$dirty && mainForm.frequency.$invalid" class="error-message" >{{'ERRORS.FREQUENCY' | translate}}</p>
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">{{'POWER.LABEL' | translate}}</span>
+			<input type="number" name="power" placeholder="{{'POWER.PLACEHOLDER' | translate}}" ng-model="data.power" min="0.01" max="1000" step="any" required />
+			<p ng-show="mainForm.power.$dirty && mainForm.power.$invalid" class="error-message" >{{'ERRORS.POWER' | translate}}</p>
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">{{'LOSSES.LABEL' | translate}}</span>
+			<input type="number" name="losses" placeholder="{{'LOSSES.PLACEHOLDER' | translate}}" ng-model="data.losses" min="0.1" max="50" step="any" required />
+			<p ng-show="mainForm.losses.$dirty && mainForm.losses.$invalid" class="error-message" >{{'ERRORS.LOSSES' | translate}}</p>
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">{{'ANTENNA.LABEL' | translate}}</span>
+			<input type="number" name="antenna" placeholder="{{'ANTENNA.PLACEHOLDER' | translate}}" ng-model="data.antenna" min="1" max="50" step="any" required />
+			<p ng-show="mainForm.antenna.$dirty && mainForm.antenna.$invalid" class="error-message" >{{'ERRORS.ANTENNA' | translate}}</p>
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">{{'DISTANCE.LABEL' | translate}}</span>
+			<input type="number" name="distance" placeholder="{{'DISTANCE.PLACEHOLDER' | translate}}" ng-model="data.distance" min="0.1" max="500" step="any" required />
+			<p ng-show="mainForm.distance.$dirty && mainForm.distance.$invalid" class="error-message" >{{'ERRORS.DISTANCE' | translate}}</p>
+		</label>
+
+		<label class="item item-input item-select">
+			<div class="input-label">
+			Modulation modes : {{ data.modulationMode.factor }}
 			</div>
+			<select ng-model="data.modulationMode" ng-options="modulation.mode for modulation in modulationModes"></select>
+		</label>
 
-			<div class="form-group">
-				<label class="control-label" for="inputPower">{{'POWER.LABEL' | translate}}</label>
-				<div class="input-group">
-					<input type="number" class="form-control" id="inputPower" name="power" placeholder="{{'POWER.PLACEHOLDER' | translate}}" ng-model="data.power" min="0.01" max="1000" step="any" required />
-					<div class="input-group-addon">Watt</div>
-				</div>
-
-				<!-- <div ng-show="mainForm.power.$dirty && mainForm.power.$invalid" > -->
-		<!-- 				<span ng-show="mainForm.power.$error.integer" class="error-message" >The value is not a valid integer!</span>
-		    		<span ng-show="mainForm.power.$error.min || form.size.$error.max" class="error-message" >The value must be in range 0 to 10!</span> -->
-				<!-- </div> -->
-
-				<p ng-show="mainForm.power.$dirty && mainForm.power.$invalid" class="error-message" >{{'ERRORS.POWER' | translate}}</p>
+		<label class="item item-input item-select">
+			<div class="input-label">
+			Transmission time ratio : {{ data.transmissionTimeRatio.ratio }}
 			</div>
+			<select ng-model="data.transmissionTimeRatio" ng-options="transmission.mode for transmission in transmissionTimeRatio"></select>
+		</label>
 
-			<div class="form-group">
-				<label class="control-label" for="inputLosses">{{'LOSSES.LABEL' | translate}}</label>
-				<div class="input-group">
-					<input type="number" class="form-control" id="inputLosses" name="losses" placeholder="{{'LOSSES.PLACEHOLDER' | translate}}" ng-model="data.losses" min="0.1" max="50" step="any" required />
-					<div class="input-group-addon">dB</div>
-				</div>
-				<p ng-show="mainForm.losses.$dirty && mainForm.losses.$invalid" class="error-message" >{{'ERRORS.LOSSES' | translate}}</p>
-			</div>
+		<button class="button button-block button-positive calculate" type="submit" ng-disabled="mainForm.$invalid">{{'CALCULATE' | translate}}</button>
 
-			<div class="form-group">
-				<label class="control-label" for="inputAntenna">{{'ANTENNA.LABEL' | translate}}</label>
-				<div class="input-group">
-					<input type="number" class="form-control" id="inputAntenna" name="antenna" placeholder="{{'ANTENNA.PLACEHOLDER' | translate}}" ng-model="data.antenna" min="1" max="50" step="any" required />
-					<div class="input-group-addon">dBd</div>
-				</div>
-				<p ng-show="mainForm.antenna.$dirty && mainForm.antenna.$invalid" class="error-message" >{{'ERRORS.ANTENNA' | translate}}</p>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label" for="inputDistance">{{'DISTANCE.LABEL' | translate}}</label>
-				<div class="input-group">
-					<input type="number" class="form-control" id="inputDistance" name="distance" placeholder="{{'DISTANCE.PLACEHOLDER' | translate}}" ng-model="data.distance" min="0.1" max="500" step="any" required />
-					<div class="input-group-addon">{{'UNIT_MEASURE_FOR_DISTANCE' | translate}}</div>
-				</div>
-				<p ng-show="mainForm.distance.$dirty && mainForm.distance.$invalid" class="error-message" >{{'ERRORS.DISTANCE' | translate}}</p>
-			</div>
-
-			<div>
-				<select ng-model="data.modulationMode" ng-options="modulation.mode for modulation in modulationModes"></select> Factor : {{ data.modulationMode.factor }}
-			</div>
-
-			<div>
-				<select ng-model="data.transmissionTimeRatio" ng-options="transmission.mode for transmission in transmissionTimeRatio"></select> Ratio {{ data.transmissionTimeRatio.ratio }}
-			</div>
-
-			<button type="submit" class="btn btn-primary btn-lg btn-block calculate" ng-disabled="mainForm.$invalid">{{'CALCULATE' | translate}}</button>
-		</form>
 	</div>
+	</form>
 
 	<!-- The result here -->
-	<!-- <div ng-show="showResult" class="container-fluid"> -->
-	<div class="container-fluid result panel panel-padding" ng-class="showResult ? 'center' : 'right'">
+	<div ng-show="showResult" class="container-fluid result panel panel-padding">
+	<!-- <div class="container-fluid result panel panel-padding" ng-class="showResult ? 'center' : 'right'"> -->
 		<div ng-include src="'views/result.html'"></div>
 
 		<button class="btn" ng-click="reset()">RESET</button>

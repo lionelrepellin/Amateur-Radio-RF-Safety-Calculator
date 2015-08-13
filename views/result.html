@@ -1,76 +1,102 @@
-<!-- data from input form -->
-<div class="row">
-	<div class="col-xs-6">Fréquence</div>
-	<div class="col-xs-3">{{result.inputData.frequency}}</div>
-	<div class="col-xs-3">Mhz</div>
-</div>
-<div class="row">
-	<div class="col-xs-6">Power</div>
-	<div class="col-xs-3">{{result.inputData.power}}</div>
-	<div class="col-xs-3">Watt</div>
-</div>
-<div class="row">
-	<div class="col-xs-6">Antenna gain</div>
-	<div class="col-xs-3">{{result.inputData.antenna}}</div>
-	<div class="col-xs-3">dBd</div>
-</div>
-<div class="row">
-	<div class="col-xs-6">Distance from antenna</div>
-	<div class="col-xs-3">{{result.inputData.distance}}</div>
-	<div class="col-xs-3">Meter</div>
-</div>
-<div class="row">
-	<div class="col-xs-6">Modulation mode</div>
-	<div class="col-xs-3">{{result.inputData.modulationMode.mode}}</div>
-	<div class="col-xs-3"></div>
-</div>
-<div class="row">
-	<div class="col-xs-6">Transmission time period ratio</div>
-	<div class="col-xs-3">{{result.inputData.transmissionTimeRatio.mode}}</div>
-	<div class="col-xs-3"></div>
-</div>
+<div class="list" >
 
-<!-- data calculated -->
-<div ng-class="result.isSafetyDistanceOk() ? 'result-ok' : 'result-ko'" >
-	<div class="row">
-		<div class="col-xs-6">Longueur d'onde</div>
-		<div class="col-xs-3">{{result.waveLength}}</div>
-		<div class="col-xs-3">m</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">Total antenna gain</div>
-		<div class="col-xs-3">{{result.totalAntennaGain}}</div>
-		<div class="col-xs-3">dBi</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">PIRE</div>
-		<div class="col-xs-3">{{result.PIRE}}</div>
-		<div class="col-xs-3">Watt</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">Champ E calculé</div>
-		<div class="col-xs-3">{{result.champElectriqueCalcule}}</div>
-		<div class="col-xs-3">V/m</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">Champ H calculé</div>
-		<div class="col-xs-3">{{result.H}}</div>
-		<div class="col-xs-3">A/m</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-6">Densité de puissance calculée</div>
-		<div class="col-xs-3">{{result.powerDensity}}</div>
-		<div class="col-xs-3">W/m²</div>
+	<div class="item item-divider" ng-class="result.isSafetyDistanceOk() ? 'result-ok' : 'result-ko'" >
+		Input data
 	</div>
 
-	<div class="row">
-		<div class="col-xs-6">Champ E conseillé</div>
-		<div class="col-xs-3">{{result.champEmaxDexpositionConseille}}</div>
-		<div class="col-xs-3">V/m</div>
+	<div class="item">
+		<div class="row">
+			<div class="col">Fréquence</div>
+			<div class="col text-right">{{result.inputData.frequency.toFixed(3)}} Mhz</div>
+		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-6">Distance minimum de sécurité</div>
-		<div class="col-xs-3">{{result.minimalSafetyDistance}}</div>
-		<div class="col-xs-3">m</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Power</div>
+			<div class="col text-right">{{result.inputData.power}} Watt</div>
+		</div>
 	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Antenna gain</div>
+			<div class="col text-right">{{result.inputData.antenna.toFixed(2)}} dBd</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Distance from antenna</div>
+			<div class="col text-right">{{result.inputData.distance}} Meter</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Modulation mode</div>
+			<div class="col text-right">{{result.inputData.modulationMode.mode}}</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Transmission time period ratio</div>
+			<div class="col text-right">{{result.inputData.transmissionTimeRatio.mode}}</div>
+		</div>
+	</div>
+
+	<div class="item item-divider" ng-class="result.isSafetyDistanceOk() ? 'result-ok' : 'result-ko'" >
+		Calculated data
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Longueur d'onde</div>
+			<div class="col text-right">{{result.waveLength.toFixed(2)}} m</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">PIRE</div>
+			<div class="col text-right">{{result.PIRE.toFixed(2)}} Watt</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Champ E calculé</div>
+			<div class="col text-right">{{result.champElectriqueCalcule.toFixed(2)}} V/m</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Champ H calculé</div>
+			<div class="col text-right">{{result.H.toFixed(2)}} A/m</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Densité de puissance</div>
+			<div class="col text-right">{{result.powerDensity.toFixed(2)}} W/m²</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Champ E conseillé</div>
+			<div class="col text-right">{{result.champEmaxDexpositionConseille.toFixed(2)}} V/m</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
+			<div class="col">Distance minimum de sécurité</div>
+			<div class="col text-right">{{result.minimalSafetyDistance.toFixed(2)}} m</div>
+		</div>
+	</div>
+
 </div>
