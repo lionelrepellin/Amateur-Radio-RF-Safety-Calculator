@@ -25,39 +25,43 @@ app.service('calculatorService',
         this.calcul = function(dataForm, lang) {
             console.log('calcul in progress...');
 
+            // TODO : sortir les 2.15
             var data = angular.copy(dataForm);
+
             var waveLength = 300 / data.frequency;
             var dBi = data.antenna + 2.15;
-            var par = data.power * Math.pow(10, (data.antenna - data.losses) / 10);
+            //var par = data.power * Math.pow(10, (data.antenna - data.losses) / 10);
             var pire = data.power * Math.pow(10, (data.antenna - data.losses + 2.15) / 10);
-            var E = getExpositionLimit(data.frequency);
-            var distance = 1 / E * Math.sqrt(30 * pire);
-            var champElectrique = 1 / data.distance * Math.sqrt(30 * pire);
+            pire *= data.modulationMode.factor;
+            pire *= data.transmissionTimeRatio.ratio;
 
-            // convert meters to feet
-            // if(lang === 'en') {
-            //     // ft = m * 3.2808
-            //     waveLength *= 3.2808;
-            //     distance *= 3.2808;
-            // }
+            var calculatedExpositionLimit = Math.pow((30 * pire), 0.5) / data.distance;
+
+            var E = getExpositionLimit(data.frequency);
+            var minimalSafetyDistanceCalculated = 1 / E * Math.sqrt(30 * pire);
+
+            // idem champ E mais en A/m
+            var champH = calculatedExpositionLimit / 120 / Math.PI;
+
+            // densité de puissance en W/m²
+            var pwrDensity = pire / 4 / Math.PI / Math.pow(data.distance, 2);
 
             return {
-                /* data from form */
-                /*
-                frequency: data.frequency,
-                powerTransceiver: data.power,
-                antennaGain: data.antenna,
-                losses: data.losses,
-                distanceFromAntenna: data.distance,
-                */
-                /* result */
-                waveLength: waveLength,
-                totalAntennaGain: dBi,
-                PAR: par,
-                minimalSafetyDistance: distance,
+                /* in */
+                inputData: data,
+                /* out */
+                waveLength: waveLength, // longueur d'onde
+                totalAntennaGain: dBi, //
+                //PAR: par,
                 PIRE: pire,
-                champElectriqueCalculé: champElectrique,
-                champEmaxDexposition: E
+                champElectriqueCalcule: calculatedExpositionLimit,
+                champEmaxDexpositionConseille: E,
+                minimalSafetyDistance: minimalSafetyDistanceCalculated,
+                H: champH,
+                powerDensity: pwrDensity,
+                isSafetyDistanceOk: function() {
+                    return this.champElectriqueCalcule < this.champEmaxDexpositionConseille;
+                }
             };
         };
 

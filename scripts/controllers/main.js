@@ -6,6 +6,8 @@ app.controller('MainCtrl', ['$scope', '$rootScope', 'calculatorService', 'langua
 		$scope.result = null;
 		$scope.showResult = false;
 
+		$scope.data = { };
+
 		console.log('$scope.showResult', $scope.showResult);
 
 		$rootScope.menu = 'home';
@@ -15,19 +17,16 @@ app.controller('MainCtrl', ['$scope', '$rootScope', 'calculatorService', 'langua
 		// modulation modes
 		$scope.modulationModes = calculatorService.getModulationModes();
 		var defaultModulationMode = $scope.modulationModes[0];
-		$scope.modulationModeSelected = defaultModulationMode;
+		$scope.data.modulationMode = defaultModulationMode;
 
 		// transmission time ratio in a 6min period
 		$scope.transmissionTimeRatio = calculatorService.getTransmissionModes();
 		var defaultTransmissionTimeRatio = $scope.transmissionTimeRatio[2];
-		$scope.transmissionTimeRatioSelected = defaultTransmissionTimeRatio;
+		$scope.data.transmissionTimeRatio = defaultTransmissionTimeRatio;
 
 		$scope.calculate = function() {
 			if($scope.mainForm.$valid) {
 				var selectedLanguage = languageService.get();
-
-				$scope.data.modulationModeFactor = $scope.modulationModeSelected.factor;
-				$scope.data.transmissionTimeRatio = $scope.transmissionTimeRatioSelected.ratio;
 
 				console.log($scope.data);
 
@@ -41,8 +40,9 @@ app.controller('MainCtrl', ['$scope', '$rootScope', 'calculatorService', 'langua
 			$scope.mainForm.$setPristine();
 			$scope.showResult = false;
 
-			$scope.modulationModeSelected = defaultModulationMode;
-			$scope.transmissionTimeRatioSelected = defaultTransmissionTimeRatio;
+			// set default values
+			$scope.data.modulationMode = defaultModulationMode;
+			$scope.data.transmissionTimeRatio = defaultTransmissionTimeRatio;
 		};
 
 

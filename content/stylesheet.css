@@ -94,3 +94,11 @@ input.ng-dirty.ng-invalid{
 	/*right: 0;*/
 	/*position: absolute;*/
 }
+
+.result-ok {
+	background-color: green;
+}
+
+.result-ko {
+	background-color: red;
+}

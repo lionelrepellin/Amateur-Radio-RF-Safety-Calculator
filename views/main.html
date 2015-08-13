@@ -56,9 +56,13 @@
 				<p ng-show="mainForm.distance.$dirty && mainForm.distance.$invalid" class="error-message" >{{'ERRORS.DISTANCE' | translate}}</p>
 			</div>
 
-			<select ng-model="modulationModeSelected" ng-options="modulation.mode for modulation in modulationModes"></select><p>Factor : {{ modulationModeSelected.factor }}</p>
+			<div>
+				<select ng-model="data.modulationMode" ng-options="modulation.mode for modulation in modulationModes"></select> Factor : {{ data.modulationMode.factor }}
+			</div>
 
-			<select ng-model="transmissionTimeRatioSelected" ng-options="transmission.mode for transmission in transmissionTimeRatio"></select><p>Ratio {{ transmissionTimeRatioSelected.ratio }}</p>
+			<div>
+				<select ng-model="data.transmissionTimeRatio" ng-options="transmission.mode for transmission in transmissionTimeRatio"></select> Ratio {{ data.transmissionTimeRatio.ratio }}
+			</div>
 
 			<button type="submit" class="btn btn-primary btn-lg btn-block calculate" ng-disabled="mainForm.$invalid">{{'CALCULATE' | translate}}</button>
 		</form>
