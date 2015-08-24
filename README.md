@@ -1,3 +1,3 @@
 # Amateur Radio RF Safety Calculator
 
-First web app made with HTML5 and AngularJS
+Web app made to calculate RF safety distance from an antenna. This application should be useful for amateur radio.
