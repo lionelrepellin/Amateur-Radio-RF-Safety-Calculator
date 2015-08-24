@@ -22,9 +22,15 @@ app.service('calculatorService',
             return 28;
         };
 
-        this.calcul = function(dataForm, lang) {
-            console.log('calcul in progress...');
+        var getDbWPower = function(power) {
+            return Math.log10(power) * 10;
+        };
 
+        var getDbMPower = function(power) {
+            return Math.log10(1000 * power) * 10;
+        };
+
+        this.calcul = function(dataForm, lang) {
             // TODO : sortir les 2.15
             var data = angular.copy(dataForm);
 
@@ -40,13 +46,16 @@ app.service('calculatorService',
             var E = getExpositionLimit(data.frequency);
             var minimalSafetyDistanceCalculated = 1 / E * Math.sqrt(30 * pire);
 
-            // idem champ E mais en A/m
-            var champH = calculatedExpositionLimit / 120 / Math.PI;
+            var modeInfos = {
+                outputPowerDbW: getDbWPower(data.power),
+                outputPowerDbM: getDbMPower(data.power),
+                pireDbW: getDbWPower(pire),
+                pireDbM: getDbMPower(pire),
+                champH: (calculatedExpositionLimit / 120 / Math.PI),
+                powerDensity: (pire / 4 / Math.PI / Math.pow(data.distance, 2))
+            };
 
-            // densité de puissance en W/m²
-            var pwrDensity = pire / 4 / Math.PI / Math.pow(data.distance, 2);
-
-            return {
+            var result = {
                 /* in */
                 inputData: data,
                 /* out */
@@ -57,12 +66,13 @@ app.service('calculatorService',
                 champElectriqueCalcule: calculatedExpositionLimit,
                 champEmaxDexpositionConseille: E,
                 minimalSafetyDistance: minimalSafetyDistanceCalculated,
-                H: champH,
-                powerDensity: pwrDensity,
+                more: modeInfos,
                 isSafetyDistanceOk: function() {
                     return this.champElectriqueCalcule < this.champEmaxDexpositionConseille;
                 }
             };
+            console.log(result);
+            return result;
         };
 
         this.getModulationModes = function() {

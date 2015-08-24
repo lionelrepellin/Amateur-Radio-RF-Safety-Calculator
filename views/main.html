@@ -34,17 +34,29 @@
 		</label>
 
 		<label class="item item-input item-select">
-			<div class="input-label">
-			Modulation modes : {{ data.modulationMode.factor }}
+			<div class="row">
+				<div class="col">
+					<div class="input-label">
+					Modulation modes<br /> : {{ data.modulationMode.factor }}
+					</div>
+				</div>
+				<div class="col">
+					<select ng-model="data.modulationMode" ng-options="modulation.mode for modulation in modulationModes"></select>
+				</div>
 			</div>
-			<select ng-model="data.modulationMode" ng-options="modulation.mode for modulation in modulationModes"></select>
 		</label>
 
 		<label class="item item-input item-select">
-			<div class="input-label">
-			Transmission time ratio : {{ data.transmissionTimeRatio.ratio }}
+			<div class="row">
+				<div class="col">
+					<div class="input-label">
+					Transmission time ratio<br /> : {{ data.transmissionTimeRatio.ratio }}
+					</div>
+				</div>
+				<div class="col">
+					<select ng-model="data.transmissionTimeRatio" ng-options="transmission.mode for transmission in transmissionTimeRatio"></select>
+				</div>
 			</div>
-			<select ng-model="data.transmissionTimeRatio" ng-options="transmission.mode for transmission in transmissionTimeRatio"></select>
 		</label>
 
 		<button class="button button-block button-positive calculate" type="submit" ng-disabled="mainForm.$invalid">{{'CALCULATE' | translate}}</button>

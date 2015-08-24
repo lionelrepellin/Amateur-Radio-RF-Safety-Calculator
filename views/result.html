@@ -20,6 +20,13 @@
 
 	<div class="item">
 		<div class="row">
+			<div class="col">Losses</div>
+			<div class="col text-right">{{result.inputData.losses.toFixed(2)}} dB</div>
+		</div>
+	</div>
+
+	<div class="item">
+		<div class="row">
 			<div class="col">Antenna gain</div>
 			<div class="col text-right">{{result.inputData.antenna.toFixed(2)}} dBd</div>
 		</div>
@@ -74,14 +81,14 @@
 	<div class="item">
 		<div class="row">
 			<div class="col">Champ H calculé</div>
-			<div class="col text-right">{{result.H.toFixed(2)}} A/m</div>
+			<div class="col text-right">{{result.more.champH.toFixed(2)}} A/m</div>
 		</div>
 	</div>
 
 	<div class="item">
 		<div class="row">
 			<div class="col">Densité de puissance</div>
-			<div class="col text-right">{{result.powerDensity.toFixed(2)}} W/m²</div>
+			<div class="col text-right">{{result.more.powerDensity.toFixed(2)}} W/m²</div>
 		</div>
 	</div>
 
